@@ -1,6 +1,7 @@
 require 'enigma'
 require 'date'
-require_relative '../modules/randomable'
+require_relative '../modules/optionable'
+require_relative '../modules/shiftable'
 
 RSpec.describe Enigma do
   let(:enigma) {Enigma.new}
@@ -25,7 +26,7 @@ RSpec.describe Enigma do
 
   it "can give me todays date formatted MMDDYY" do
 #lets mock this one also passes what i want right now
-    expect(enigma.date_formatter).to eq("061022")
+    expect(enigma.date_formatter).to eq("061122")#changes every day
     expect(enigma.date_formatter).to be_an(String)
     expect(enigma.date_formatter.length).to eq(6)
   end
@@ -34,6 +35,13 @@ RSpec.describe Enigma do
     #lets mock this one also
     expect(enigma.key_generator).to be_an(String)
     expect(enigma.key_generator.length).to eq(5)
+  end
+
+  it "can create our list of valid characters" do
+    expect(enigma.characters).to be_an(Array)
+    expect(enigma.characters.count).to eq(27)
+    expect(enigma.characters.first).to eq("a")
+    expect(enigma.characters.last).to eq(" ")
   end
 
 end
