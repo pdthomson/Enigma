@@ -9,6 +9,7 @@ RSpec.describe Enigma do
   let(:key) {"02715"}
   let(:date) {"040895"}
   let(:offset) {"1025"}
+  let(:shift) {[3, 27, 73, 20]}
 
   it "exists" do
     expect(enigma).to be_an(Enigma)
@@ -27,7 +28,9 @@ RSpec.describe Enigma do
 
   it "can give me todays date formatted MMDDYY" do
 #lets mock this one also passes what i want right now
-    expect(enigma.date_formatter).to eq("061122")#changes every day
+    date = Date.today
+    expected = date.strftime("%D").delete("/")
+    expect(enigma.date_formatter).to eq(expected)
     expect(enigma.date_formatter).to be_an(String)
     expect(enigma.date_formatter.length).to eq(6)
   end
@@ -56,4 +59,12 @@ RSpec.describe Enigma do
     expect(enigma.shift_array(offset, key)).to eq([3, 27, 73, 20])
   end
 
+  it "can encrypt a message" do
+    expect(enigma.encode(message, shift)).to eq("keder ohulw")
+  end
+
+  it "can check will skip invalid characters" do
+    invalid_characters = "!h(e)l$l%o^1234&"
+    expect(enigma.encode(invalid_characters, shift)).to eq("keder")
+  end
 end
