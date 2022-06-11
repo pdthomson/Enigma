@@ -1,6 +1,6 @@
 require 'date'
 
-module Randomable
+module Optionable
 
   def date_formatter
   date = Date.today
