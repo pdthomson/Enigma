@@ -1,5 +1,4 @@
-require 'date'
-require_relative '../modules/optionable'
+require_relative '../modules/randomable'
 
 module Shiftable
 
@@ -17,7 +16,7 @@ module Shiftable
   end
 
   def encode(message, shift)
-    encrypted_string = ''
+    encrypted_string = ""
     message.each_char do |string|
       if characters.include?(string) == nil?
       else
@@ -27,5 +26,18 @@ module Shiftable
       end
     end
     encrypted_string
+  end
+
+  def decode(encrypted_message, shift)
+    decrypted_string = ""
+    encrypted_message.each_char do |string|
+      if characters.include?(string) == nil?
+      else
+      shift_letter = characters.index(string) - shift[0]
+      decrypted_string.concat(characters.rotate(shift_letter)[0])
+      shift.rotate!
+      end
+    end
+    decrypted_string
   end
 end

@@ -1,9 +1,9 @@
 require 'date'
-require_relative '../modules/optionable'
+require_relative '../modules/randomable'
 require_relative '../modules/shiftable'
 
 class Enigma
-  include Optionable
+  include Randomable
   include Shiftable
 
   def encrypt(message, key = key_generator, date = date_formatter)
