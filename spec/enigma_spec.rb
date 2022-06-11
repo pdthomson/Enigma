@@ -8,6 +8,7 @@ RSpec.describe Enigma do
   let(:message) {"hello world"}
   let(:key) {"02715"}
   let(:date) {"040895"}
+  let(:offset) {"1025"}
 
   it "exists" do
     expect(enigma).to be_an(Enigma)
@@ -42,6 +43,17 @@ RSpec.describe Enigma do
     expect(enigma.characters.count).to eq(27)
     expect(enigma.characters.first).to eq("a")
     expect(enigma.characters.last).to eq(" ")
+  end
+
+  it "can create the offset for the shift" do
+    expect(enigma.create_offset(date)).to be_an(String)
+    expect(enigma.create_offset(date).include?("1")).to eq(true)
+    expect(enigma.create_offset(date).include?("5")).to eq(true)
+  end
+
+  it "can create the shift" do
+    expect(enigma.shift_array(offset, key)).to be_an(Array)
+    expect(enigma.shift_array(offset, key)).to eq([3, 27, 73, 20])
   end
 
 end
