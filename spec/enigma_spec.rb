@@ -1,15 +1,18 @@
 require 'enigma'
 require 'date'
-require_relative '../modules/optionable'
+require_relative '../modules/randomable'
 require_relative '../modules/shiftable'
 
 RSpec.describe Enigma do
   let(:enigma) {Enigma.new}
   let(:message) {"hello world"}
+  let(:encrypted_message) {"keder ohulw"}
+
   let(:key) {"02715"}
   let(:date) {"040895"}
   let(:offset) {"1025"}
   let(:shift) {[3, 27, 73, 20]}
+  let(:unshift) {[3, 27, 73, 20]}
 
   it "exists" do
     expect(enigma).to be_an(Enigma)
@@ -63,8 +66,18 @@ RSpec.describe Enigma do
     expect(enigma.encode(message, shift)).to eq("keder ohulw")
   end
 
-  it "can check will skip invalid characters" do
+  it "can check for valid characers and will skip invalid characters" do
     invalid_characters = "!h(e)l$l%o^1234&"
     expect(enigma.encode(invalid_characters, shift)).to eq("keder")
   end
+
+  it "can decode an encrypted message" do
+    expect(enigma.decode(encrypted_message, shift)).to eq("hello world")
+  end
+
+  it "can check for valid characers and will skip invalid characters" do
+    invalid_characters = "!k(e)d$e%r^1234&"
+    expect(enigma.decode(invalid_characters, shift)).to eq("hello")
+  end
+
 end
