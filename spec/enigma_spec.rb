@@ -30,7 +30,6 @@ RSpec.describe Enigma do
   end
 
   it "can give me todays date formatted MMDDYY" do
-#lets mock this one also passes what i want right now
     date = Date.today
     expected = date.strftime("%D").delete("/")
     expect(enigma.date_formatter).to eq(expected)
