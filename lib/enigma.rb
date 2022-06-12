@@ -8,8 +8,9 @@ class Enigma
 
   def encrypt(message, key = key_generator, date = date_formatter)
     encrypt_hash = {}
+    require "pry"; binding.pry
     shifter = shift_array(create_offset(date), key)
-    encrypt_hash[:encryption] = encode(message, shifter)
+    encrypt_hash[:encryption] = encode(message.downcase, shifter)
     encrypt_hash[:key] = key
     encrypt_hash[:date] = date
     encrypt_hash
@@ -23,8 +24,4 @@ class Enigma
     decrypt_hash[:date] = date
     decrypt_hash
   end
-
-
-
-
 end

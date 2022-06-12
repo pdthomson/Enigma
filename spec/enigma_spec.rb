@@ -7,12 +7,13 @@ RSpec.describe Enigma do
   let(:enigma) {Enigma.new}
   let(:message) {"hello world"}
   let(:encrypted_message) {"keder ohulw"}
-
   let(:key) {"02715"}
   let(:date) {"040895"}
   let(:offset) {"1025"}
   let(:shift) {[3, 27, 73, 20]}
   let(:unshift) {[3, 27, 73, 20]}
+  let(:incoming_file) {"message.txt"}
+  let(:outgoing_file) {"encrypted.txt"}
 
   it "exists" do
     expect(enigma).to be_an(Enigma)
@@ -88,5 +89,4 @@ RSpec.describe Enigma do
     invalid_characters = "!k(e)d$e%r^1234&"
     expect(enigma.decode(invalid_characters, shift)).to eq("hello")
   end
-
 end
