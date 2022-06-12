@@ -29,6 +29,16 @@ RSpec.describe Enigma do
       expect(enigma.encrypt(message)).to be_an(Hash)
   end
 
+  it "can decrypt a message and return a hash" do
+    expected = ({
+      :decryption => "hello world",
+      :key => "02715",
+      :date => "040895"
+      })
+      expect(enigma.decrypt(encrypted_message, key, date)).to eq(expected)
+
+  end
+
   it "can give me todays date formatted MMDDYY" do
     date = Date.today
     expected = date.strftime("%D").delete("/")
