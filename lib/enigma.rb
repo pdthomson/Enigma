@@ -7,15 +7,22 @@ class Enigma
   include Shiftable
 
   def encrypt(message, key = key_generator, date = date_formatter)
-    enigma_hash = {}
+    encrypt_hash = {}
     shifter = shift_array(create_offset(date), key)
-    enigma_hash[:encryption] = encode(message, shifter)
-    enigma_hash[:key] = key
-    enigma_hash[:date] = date
-    enigma_hash
+    encrypt_hash[:encryption] = encode(message, shifter)
+    encrypt_hash[:key] = key
+    encrypt_hash[:date] = date
+    encrypt_hash
   end
 
-
+  def decrypt(encrypted_message, key, date = date_formatter)
+    decrypt_hash = {}
+    shifter = shift_array(create_offset(date), key)
+    decrypt_hash[:decryption] = decode(encrypted_message, shifter)
+    decrypt_hash[:key] = key
+    decrypt_hash[:date] = date
+    decrypt_hash
+  end
 
 
 
