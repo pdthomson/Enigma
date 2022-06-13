@@ -49,7 +49,8 @@ RSpec.describe Enigma do
   end
 
   it "can generate a random 5 digit number" do
-    #lets mock this one also
+    allow(enigma).to receive(:rand).and_return(0)
+    expect(enigma.key_generator).to eq("00000")
     expect(enigma.key_generator).to be_an(String)
     expect(enigma.key_generator.length).to eq(5)
   end
