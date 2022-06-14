@@ -42,11 +42,9 @@ RSpec.describe Enigma do
       :date => "040895"
       })
 
-      allow(enigma).to receive(:rand).and_return(0)
       expect(enigma.decrypt(encrypted_message, key, date)).to eq(expected)
       expect(enigma.decrypt(encrypted_message, key)[:date]).to eq(expected_date)
-      expect(enigma.encrypt(message)[:key]).to eq("00000")
-      expect(enigma.decrypt(message, key)).to be_an(Hash)
+      expect(enigma.decrypt(encrypted_message, key)).to be_an(Hash)
   end
 
   it "can give me todays date formatted MMDDYY" do
