@@ -18,7 +18,6 @@ module Shiftable
   def encode(message, shift)
     encrypted_string = ""
     message.each_char do |string|
-      # if characters.include?(string) == nil?
       if characters.include?(string) == false
         encrypted_string.concat(string)
       else
@@ -33,8 +32,7 @@ module Shiftable
   def decode(encrypted_message, shift)
     decrypted_string = ""
     encrypted_message.each_char do |string|
-      # if characters.include?(string) == nil?
-      if characters.include?(string) == false 
+      if characters.include?(string) == false
         decrypted_string.concat(string)
       else
       shift_letter = characters.index(string) - shift[0]

@@ -13,8 +13,6 @@ RSpec.describe Enigma do
   let(:offset) {"1025"}
   let(:shift) {[3, 27, 73, 20]}
   let(:unshift) {[3, 27, 73, 20]}
-  let(:incoming_file) {"message.txt"}
-  let(:outgoing_file) {"encrypted.txt"}
 
   it "exists" do
     expect(enigma).to be_an(Enigma)
