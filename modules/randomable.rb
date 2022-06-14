@@ -4,7 +4,7 @@ module Randomable
 
   def date_formatter
   date = Date.today
-  date.strftime("%D").delete("/")
+  date.strftime("%d/%m/%y").delete("/")
   end
 
   def key_generator

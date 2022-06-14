@@ -9,7 +9,7 @@ key = key_generator
 reading_file = File.open(ARGV[0], 'r')
 writing_file = File.open(ARGV[1], "w")
 
-encrypt_hash = enigma.encrypt(reading_file.read.chomp, key)
+encrypt_hash = enigma.encrypt(reading_file.read, key)
 writing_file.write(encrypt_hash[:encryption])
 
-puts "Created #{writing_file} with the key #{key} and the date #{encrypt_hash[:date]}"
+puts "Created #{ARGV[1]} with the key #{key} and the date #{encrypt_hash[:date]}"
